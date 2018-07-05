@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  
+</head>
+<body>
+
+  <h1>Find a Doctor</h1>
+
+  <div id="main-container">
+
+    <div id="left-container">
+      <div  style="width:200px;">
+        <select id="specialty-menu">
+          <option value="0">Select a specialty</option>
+          <option value="1">Allergist</option>
+          <option value="2">Anesthesiologist</option>
+          <option value="3">Cardiologist</option>
+          <option value="4">Colorectal Surgeon</option>
+          <option value="5">Dermatologist</option>
+          <option value="6">Ear Nose & Throat Doctor</option>
+          <option value="7">Endocrinologist</option>
+          <option value="8">Emergency Medicine Doctor</option>
+          <option value="9">Family Practitioner</option>
+          <option value="10">Gastroenterologist</option>
+          <option value="11">General Surgeon</option>
+          <option value="12">Geneticist</option>
+          <option value="13">Geriatric Medicine Doctor</option>
+          <option value="14">Hospice Care & Palliative Doctor</option>
+          <option value="15">Infectious Disease Doctor</option>
+          <option value="16">Internal Medicine Hematology</option>
+          <option value="17">Internist</option>
+          <option value="18">Nephrologist</option>
+          <option value="19">Neurologist</option>
+          <option value="20">Obstetrics & Gynecology</option>
+          <option value="21">Oncologist</option>
+          <option value="22">Ophthalmologist</option>
+          <option value="23">Pathologist</option>
+          <option value="24">Pediatrician</option>
+          <option value="25">Physiatrist</option>
+          <option value="26">Plastic Surgeon Specialist</option>
+          <option value="27">Podiatrist</option>
+          <option value="28">Preventive Medicine Doctor</option>
+          <option value="29">Psychiatrist</option>
+          <option value="30">Pulmonologist</option>
+          <option value="31">Rheumatologist</option>
+          <option value="32">Sleep Medicine Doctor</option>
+          <option value="33">Sports Medicine Doctor</option>
+          <option value="34">Urologist</option>
+        </select>
+        <label for="zip-code">Enter a Zip Code</label>
+        <input id="zip-code" type="text"></input>
+        <button id="search">Search</button>
+      </div>
+
+      <select id="filter-menu">
+        <option value="1">Filter by</option>
+        <option value="1">Distance</option>
+        <option value="2">Rating</option>
+        <option value="3">Last Name (A-Z)</option>
+        <option value="4">Last Name (Z-A)</option>
+      </select>
+      <button id="filter"></button>
+
+      <div id="doctor-list-container"></div>
+
+    </div>
+
+    <div id="right-container">
+
+
+    </div>
+
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

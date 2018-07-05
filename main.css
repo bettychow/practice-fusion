@@ -1,0 +1,17 @@
+#specialty-menu {
+  display: inline;
+}
+
+#main-container{
+  display: flex;
+  flex-direction: row;
+}
+
+#right-container{
+  margin-left: 50px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0px;
+}
