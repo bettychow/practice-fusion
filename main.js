@@ -4,15 +4,11 @@ const searchButton = document.getElementById("search")
 searchButton.onclick = async () => {
   let elt = document.getElementById("specialty-menu")
   let specialty = elt.options[elt.selectedIndex].text
- 
-
   let arr = specialty.split(' ')
 
   const lowerCaseArr = arr.map(ele => {
-   
     return ele.toLowerCase()
   })
-
 
   if (lowerCaseArr.includes('&')) {
     let index = lowerCaseArr.indexOf('&') 
@@ -20,16 +16,14 @@ searchButton.onclick = async () => {
   }
 
   let specialtyStr = lowerCaseArr.join('-')
-  
-
   let zipCode = document.getElementById('zip-code').value
+  let location = await getLocation(zipCode)
 
-
-let location = await getLocation(zipCode)
-
-getDoctorList(location, specialtyStr)
+  getDoctorList(location, specialtyStr)
   
 }
+
+//getLocation is used to get the lat and lng of a zip code input by user so that user can find doctors within a desired area
 
 async function getLocation (zipCode) {
 
@@ -38,100 +32,17 @@ async function getLocation (zipCode) {
   headers: {
     "Content-Type": "application/json",
     'Access-Control-Allow-Origin': '*'
-  }
-})
-
-let JSONres = await response.json()
-
-console.log('JJJJJJ', JSONres)
-
-return JSONres
-}
-
-
-function getDoctorList (location, specialtyStr ) {
-
-  let lat = location.lat
-  let lng = location.lng
-
-  console.log('LAT', lat)
-  console.log('LNG', lng)
-
-  fetch(`https://cors-anywhere.herokuapp.com/https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=${specialtyStr}&location=${lat}%2C${lng}%2C25&skip=0&limit=20&user_key=95a77be1775294007d5183c52a5dab57`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      'Access-Control-Allow-Origin': '*'
     }
-  }).then(res => res.json())
-    .then(data => {
-      console.log('DATATATATATAT', data)
+  })
 
-      const filterMenu = document.getElementById('filter-menu')
-      const filterType = filterMenu.options[filterMenu.selectedIndex].text
-   
-      const docArr = data.data
+  let JSONres = await response.json()
 
-      if(filterType === 'Last Name (A-Z)') {
-        
-        docArr.sort((a, b) => {
-          let nameA = a.profile.last_name.toUpperCase()
-          let nameB = b.profile.last_name.toUpperCase()
-          if (nameA < nameB) {
-            return -1;
-          }
-          if (nameA > nameB) {
-            return 1;
-          }
-          return 0;
-        })
-    
-        insertDocList(docArr)
-    
-      } else if(filterType === 'Last Name (Z-A)') {
-
-        docArr.sort((a, b) => {
-          let nameA = a.profile.last_name.toUpperCase()
-          let nameB = b.profile.last_name.toUpperCase()
-          if (nameA < nameB) {
-            return 1;
-          }
-          if (nameA > nameB) {
-            return -1;
-          }
-          return 0;
-        })
-    
-        insertDocList(docArr)
-      } else if (filterType === 'Distance') {
-
-        docArr.sort((a,b) => {
-          return a.practices[0].distance - b.practices[0].distance
-        })
-
-        insertDocList(docArr)
-      } else if(filterType === 'Rating') {
-
-      }else {
-
-        insertDocList(data.data)
-
-      }
-
-
-       
-    
-    })
-
+  return JSONres
 }
 
 function insertDocList (docArr) {
-  console.log('KKKKKKKKKKK', docArr)
-  let docListContainer = document.getElementById('doctor-list-container')
 
- 
-  
-
+  const docListContainer = document.getElementById('doctor-list-container')
   const docList = document.createElement('ul')
   docList.id = 'doctor-list'
   
@@ -152,23 +63,18 @@ function insertDocList (docArr) {
 
     docName.append(radioBtn)
     docName.append(label)
-    
     docList.append(docName)
   })
  
   while (docListContainer.firstChild) {
     docListContainer.removeChild(docListContainer.firstChild);
-}
+  }
   
-docListContainer.append(docList)
+  docListContainer.append(docList)
 }
-
-
-
 
 
 async function chooseDoc (e) {
-  console.log('chooseDoc is triggered', e.target.id)
 
   let npi = e.target.id
 
@@ -180,9 +86,6 @@ async function chooseDoc (e) {
   })
 
   const JSONres = await response.json()
-
-  console.log('JOSONres in chooseDoc', JSONres)
-
   const docProfile = document.querySelector('#right-container')
 
   while(docProfile.firstChild) {
@@ -224,12 +127,10 @@ async function chooseDoc (e) {
     residency.innerHTML = education[1].school
   }
 
-
   const insuranceTitle = document.createElement('h4')
   insuranceTitle.innerHTML = 'Insurances Accepted'
 
   const insuranceList = document.createElement('ul')
-
 
   insurancesArr.forEach(insurance => {
     const insuranceName = document.createElement('li')

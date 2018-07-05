@@ -55,17 +55,16 @@
         </select>
         <label for="zip-code">Enter a Zip Code</label>
         <input id="zip-code" type="text"></input>
-        <button id="search">Search</button>
       </div>
 
       <select id="filter-menu">
         <option value="1">Filter by</option>
-        <option value="1">Distance</option>
+        <option value="1">Distance (Closest First)</option>
         <option value="2">Rating</option>
         <option value="3">Last Name (A-Z)</option>
         <option value="4">Last Name (Z-A)</option>
       </select>
-      <button id="filter"></button>
+      <button id="search">Search</button>
 
       <div id="doctor-list-container"></div>
 
@@ -77,7 +76,8 @@
     </div>
 
   </div>
-
   <script src="main.js"></script>
+  <script src="getDoctorList.js"></script>
+  
 </body>
 </html>
