@@ -6,7 +6,7 @@ function getDoctorList (location, specialtyStr ) {
   let lat = location.lat
   let lng = location.lng
 
-  fetch(`https://cors-anywhere.herokuapp.com/https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=${specialtyStr}&location=${lat}%2C${lng}%2C25&skip=0&limit=100&user_key=95a77be1775294007d5183c52a5dab57`, {
+  fetch(`https://cors-anywhere.herokuapp.com/https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=${specialtyStr}&location=${lat}%2C${lng}%2C25&skip=0&limit=25&user_key=95a77be1775294007d5183c52a5dab57`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
